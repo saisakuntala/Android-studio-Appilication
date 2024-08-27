@@ -1,21 +1,23 @@
-package com.example.a12fragment;
+package com.palaniappan.thillainathan.greetingsapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
-    Button btn1,btn2;
-
+    Button btn;
+    TextView tv;
+    EditText et;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,28 +28,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        btn1=(Button) findViewById(R.id.bg);
-        btn2=(Button) findViewById(R.id.by);
-        btn1.setOnClickListener(new View.OnClickListener() {
+        btn=(Button) findViewById(R.id.B1);
+        tv=(TextView) findViewById(R.id.T1);
+        et=(EditText) findViewById(R.id.E1);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                loadfrag(new GoogleFragment());
-
+            public void onClick(View v) {
+                String a=et.getText().toString();
+                tv.setText("Welcome "+a+" ,to android class");
             }
         });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadfrag(new YahooFragment());
-            }
-        });
-    }
-
-    private void loadfrag(Fragment fragment) {
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.fr1,fragment);
-        ft.commit();
-
     }
 }
